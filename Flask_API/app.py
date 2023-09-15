@@ -205,7 +205,7 @@ def predictfertilizer():
             response = {
                 "prediction": prediction_data
             }
-            print(response)
+            
             return jsonify(response)
         else:
             return jsonify({"error": "Invalid method"})
