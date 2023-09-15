@@ -156,7 +156,7 @@ def predictcrop():
     try:
         if request.method == "POST":
             form_values = request.form.to_dict()
-            print(form_values)
+            
             column_names = ["N", "P", "K", "temperature", "humidity", "ph", "rainfall"]
             input_data = np.asarray([float(form_values[i].strip()) for i in column_names]).reshape(
                 1, -1
@@ -165,7 +165,7 @@ def predictcrop():
             response = {
             "prediction": prediction_data
         }
-            print(response)
+           
         return jsonify(response)
     except:
         return jsonify({"error":"Please Enter Valid Data"})
@@ -175,7 +175,7 @@ def predictcrop():
 def predictfertilizer():
     try:
         if request.method == "POST":
-            print("ne hvuhvk hrurw 1111")
+           
             form_values = request.form.to_dict()
             column_names = [
                 "Temperature",
@@ -187,21 +187,20 @@ def predictfertilizer():
                 "Potassium",
                 "Phosphorous",
             ]
-            print(column_names)
-            print("jcjvoiwe 222")
+           
+          
             for key in form_values:
                 form_values[key] = form_values[key].strip()
 
             form_values["soil_type"] = soil_label_dict[form_values["soil_type"]]
-            print(form_values["soil_type"])
+            
             form_values["crop_type"] = crop_label_name_dict[form_values["crop_type"]]
-            print(form_values["crop_type"])
-            print(5)
+            
+           
             input_data = np.asarray([float(form_values[i]) for i in column_names]).reshape(
                 1, -1
             )
-            print(input_data)
-            print("333")
+            
             prediction_data = fertilizer_prediction(input_data)
             response = {
                 "prediction": prediction_data
